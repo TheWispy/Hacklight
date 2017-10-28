@@ -1,74 +1,66 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+const axios = require('axios');
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+if (!GITHUB_TOKEN) throw new Error("Supply GitHub token");
 
 /* GET listing. */
-router.get('/', function(req, res, next) {
-  let exampleGhApiRes = {
-    "data": {
-      "search": {
-        "repositoryCount": 2,
-        "edges": [
-          {
-            "node": {
-              "name": "git-chauthor",
-              "url": "https://github.com/dannycjones/git-chauthor",
-              "primaryLanguage": {
-                "name": "JavaScript",
-                "color": "#f1e05a"
-              },
-              "owner": {
-                "login": "dannycjones"
-              },
-              "description": "This is a command line tool that enables you to easily set the author for a project.",
-              "stargazers": {
-                "totalCount": 2
-              },
-              "forks": {
-                "totalCount": 0
-              },
-              "issues": {
-                "totalCount": 3
-              },
-              "projects": {
-                "edges": [
-                  {
-                    "node": {
-                      "name": "TempProject"
-                    }
-                  }
-                ]
-              }
+router.get('/', function(req, res, next) {  
+  const query = `{
+    search(query: "topic:hacksheffield", type: REPOSITORY, first: 10) {
+      repositoryCount
+      edges {
+        node {
+          ... on Repository {
+            name
+            url
+            primaryLanguage{
+              name
+              color
             }
-          },
-          {
-            "node": {
-              "name": "Hacklight",
-              "url": "https://github.com/TheWispy/Hacklight",
-              "primaryLanguage": null,
-              "owner": {
-                "login": "TheWispy"
-              },
-              "description": "Github Spotlight",
-              "stargazers": {
-                "totalCount": 1
-              },
-              "forks": {
-                "totalCount": 0
-              },
-              "issues": {
-                "totalCount": 0
+            owner{
+              login
+              avatarUrl
+            }
+            description
+            stargazers{
+              totalCount
+            }
+            forks{
+              totalCount
+            }
+            issues(states:OPEN){
+              totalCount
+            }
+            projects(first:10) {
+              edges {
+                node {
+                  ... on Project {
+                    name
+                  }
+                }
               }
             }
           }
-        ]
+        }
       }
     }
-  };
+  }`;
+  
+  axios.post('https://api.github.com/graphql', { query }, { headers: {'Authorization': `Bearer ${GITHUB_TOKEN}`}}).then(ghRes => {
+    let jsonOutput = {
+      data: ghRes.data.data.search.edges.map(edge => edge.node) // Move direct to each repository, and remove intermediary 'node' key.
+    };
 
-  // Move direct to each repository, and remove intermediary 'node' key.
-  let output = exampleGhApiRes.data.search.edges.map(edge => edge.node);
-
-  res.json(output);
+    res.json(jsonOutput);
+  }).catch(() => {
+    res.json({
+      errors: [{
+        title: "Error attempting to contact GitHub API"
+      }]
+    })
+  });
 });
 
 module.exports = router;
