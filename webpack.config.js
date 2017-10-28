@@ -67,6 +67,9 @@ if (process.env.NODE_ENV === 'production') {
       sourceMap: true,
       compress: {
         warnings: false
+      },
+      uglifyOptions: {
+        ecma: 8,
       }
     }),
     new webpack.LoaderOptionsPlugin({
