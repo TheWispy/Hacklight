@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET listing. */
 router.get('/', function(req, res, next) {
-  res.json({
+  let exampleGhApiRes = {
     "data": {
       "search": {
         "repositoryCount": 2,
@@ -57,16 +57,18 @@ router.get('/', function(req, res, next) {
               },
               "issues": {
                 "totalCount": 0
-              },
-              "projects": {
-                "edges": []
               }
             }
           }
         ]
       }
     }
-  });
+  };
+
+  // Move direct to each repository, and remove intermediary 'node' key.
+  let output = exampleGhApiRes.data.search.edges.map(edge => edge.node);
+
+  res.json(output);
 });
 
 module.exports = router;
