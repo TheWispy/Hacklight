@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-      <hacklightcard class="hackcard" :ghRepo="repo" v-for="repo in ghData.data">
+      <hacklightcard class="hackcard" :ghRepo="repo" v-for="repo in ghData.data" v-bind:key="repo.name">
       </hacklightcard>
     </div>
 </template>
