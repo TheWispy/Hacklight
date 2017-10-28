@@ -1,17 +1,23 @@
 <template>
-    <div>
+    <div class="hacklightlist">
       This is where our component goes :^)
+      <ul>
+        <li v-for="repo in ghData.data">
+          {{ repo.name }}
+        </li>
+      </ul>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
-  props: ['ghData'],
-  data () {
-    return {
-      msg: 'HackLight Demo'
-    }
-  }
+  name: 'hacklightlist',
+  props: ['ghData']
 }
 </script>
+
+<style>
+.hacklightlist {
+    background-color: #69DCA4;
+}
+</style>
