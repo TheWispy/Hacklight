@@ -6,9 +6,15 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "server": "nodemon server/bin/www"
   },
   "dependencies": {
+    "axios": "^0.17.0",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
     "vue": "^2.4.4"
   },
   "devDependencies": {
@@ -20,6 +26,7 @@
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
     "node-sass": "^4.5.3",
+    "nodemon": "^1.12.1",
     "sass-loader": "^6.0.6",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
