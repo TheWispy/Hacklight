@@ -1,12 +1,14 @@
 <template>
     <div id="wrapper">
-      <div id="head">
-        <h3 id="name">{{ ghRepo.name }}</h3>
-        <h3 id="owner">{{ ghRepo.owner.login }}</h3>
-        <h3 id="language" v-if="ghRepo.primaryLanguage" v-bind:style="{ 'background-color': ghRepo.primaryLanguage.color}">{{ ghRepo.primaryLanguage.name }}</h3>
+      <div class="headbar">
+        <h3 id="name" v-bind:style="{ 'background-color': ghRepo.primaryLanguage.color}">{{ ghRepo.name }}</h3>
       </div>
-      <div>
+      <div class="descrip">
         <p>{{ ghRepo.description }}</p>
+      </div>
+      <div class="bottom">
+        <img class="avatar" v-bind:src="ghRepo.owner.avatarURL"/>
+        <p>{{ghRepo.owner.login}}</p>
       </div>
       <ul>
         <li>Stars: {{ ghRepo.stargazers.totalCount }}</li>
@@ -30,6 +32,13 @@ export default {
   border-left-color: black;
   padding: 5px;
 }
+#wrapper div{
+  flex-direction: vertical;
+}
+#wrapper ul{
+  padding: 0;
+  font-size: 0.7rem;
+}
 #name, #owner, #language{
   display: inline;
 }
@@ -38,6 +47,8 @@ export default {
 }
 #language{
   float: right;
+  border-width: 10px 0 0 0;
+  border-style: solid;
 }
 ul li{
   list-style-type: none;
@@ -48,5 +59,9 @@ ul li{
 }
 p{
   font-size: 0.9em
+}
+.avatar{
+  float: right;
+  height: 6rem;
 }
 </style>

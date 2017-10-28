@@ -23,5 +23,6 @@ export default {
     background-color: #B0B0B0;
     border: 1px solid #808080;
     border-radius: 10px;
+    height: 10rem;
 }
 </style>

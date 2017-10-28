@@ -8,7 +8,8 @@
         "color":"#f1e05a"
       },
       "owner":{
-        "login":"dannycjones"
+        "login":"dannycjones",
+        "avatarURL": "https://avatars1.githubusercontent.com/u/4976211?s=460&v=4"
       },
       "description":"This is a command line tool that enables you to easily set the author for a project.",
       "stargazers":{
