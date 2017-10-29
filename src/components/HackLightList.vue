@@ -1,7 +1,7 @@
 <template>
     <div class="hacklight-wrapper-outer">
       <div v-if="items.length !== 0" class="hacklight-wrapper-inner">
-        <carousel :perPage=1 :navigationEnabled=false :autoplay=true :loop=true>
+        <carousel :perPage=1 :navigationEnabled=false :autoplay=true :loop=true :autoplayTimeout=6000>
           <slide v-for="item in items" :key="item.name">
             <hacklightcard class="hackcard" :ghRepo="item">
             </hacklightcard>
@@ -10,8 +10,8 @@
       </div>
     </div>
 </template>
-<script>
 
+<script>
 import HackLightCard from './HackLightCard.vue'
 import { Carousel, Slide } from 'vue-carousel';
 
