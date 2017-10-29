@@ -16,14 +16,16 @@ export default {
   data () {
     return {
       msg: 'HackLight Demo',
-      ghData: []
+      ghData: [],
+      topic: 'HackNotts2017'
     }
   },
   components: {
     hacklightlist: HackLightList
   },
   created () {
-    this.$http.get('/api').then(response => {
+    console.log(this);
+    this.$http.get(`/api/repos-with-topic/${this.topic}`).then(response => {
       this.ghData = response.body.data
     }, response => {
       this.ghData = require('./test/mock_gh_project_results.json').data
