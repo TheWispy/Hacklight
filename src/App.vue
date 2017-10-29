@@ -25,7 +25,6 @@ export default {
   created () {
     this.$http.get('/api').then(response => {
       this.ghData = response.body.data
-      console.log(this.ghData)
     }, response => {
       this.ghData = require('./test/mock_gh_project_results.json').data
     });
