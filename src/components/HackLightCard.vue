@@ -31,7 +31,10 @@
 <script>
 export default {
   name: 'hacklightlist',
-  props: ['ghRepo']
+  props: ['ghRepo'],
+  mounted () {
+    console.log(this.ghRepo)
+  }
 }
 </script>
 

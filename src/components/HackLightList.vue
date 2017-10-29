@@ -1,6 +1,6 @@
 <template>
     <div class="hacklight-wrapper-outer">
-      <div class="hacklight-wrapper-inner">
+      <div v-if="items.length !== 0" class="hacklight-wrapper-inner">
         <carousel :perPage=1 :navigationEnabled=false :autoplay=true :loop=true>
           <slide v-for="item in items" :key="item.name">
             <hacklightcard class="hackcard" :ghRepo="item">

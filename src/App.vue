@@ -4,7 +4,7 @@
       <img id="hacklight-logo" src="./assets/logo.png">
       <h1>{{ msg }}</h1>
       </div>
-      <hacklightlist :ghData="mockData.data"></hacklightlist>
+      <hacklightlist v-if="ghData.length !== 0" :ghData="ghData"></hacklightlist>
     </div>
 </template>
 
@@ -16,11 +16,19 @@ export default {
   data () {
     return {
       msg: 'HackLight Demo',
-      mockData: require('./test/mock_gh_project_results.json')
+      ghData: []
     }
   },
   components: {
     hacklightlist: HackLightList
+  },
+  created () {
+    this.$http.get('/api').then(response => {
+      this.ghData = response.body.data
+      console.log(this.ghData)
+    }, response => {
+      this.ghData = require('./test/mock_gh_project_results.json').data
+    });
   }
 }
 </script>

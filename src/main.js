@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueAgile from 'vue-agile'
-import VueCarousel from 'vue-carousel';
+import VueCarousel from 'vue-carousel'
+import VueResource from 'vue-resource'
+
+Vue.use(VueResource);
 Vue.use(VueCarousel);
-Vue.use(VueAgile);
 
 new Vue({
   el: '#app',
+  http: { root: '/' },
   render: h => h(App)
 });
