@@ -17,7 +17,7 @@
         </div>
         <div>
           <h4>{{ghRepo.owner.login}}</h4>
-          <p>Public bio is very interesting. I like to make things</p>
+          <p>{{ghRepo.owner.bio}}</p>
           <ul>
             <li>⭐️- {{ ghRepo.stargazers.totalCount }}</li>
             <li>🌵- {{ ghRepo.forks.totalCount }}</li>

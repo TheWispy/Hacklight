@@ -20,8 +20,11 @@ router.get('/', function(req, res, next) {
               color
             }
             owner{
-              login
-              avatarUrl
+              ... on User{
+                login
+              	avatarUrl
+              	bio
+              }
             }
             description
             stargazers{
