@@ -19,10 +19,6 @@ export default {
 <style>
 .hackcard {
     width: 80%;
-    margin: 0 5% 5px 5%;
-    background-color: #B0B0B0;
-    border: 1px solid #808080;
-    border-radius: 10px;
-    height: 10rem;
+    margin: 0 5% 10px 5%;
 }
 </style>
