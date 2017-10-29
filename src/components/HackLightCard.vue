@@ -1,28 +1,48 @@
 <template>
-    <div class="wrapper">
-      <div v-if="ghRepo.primaryLanguage" class="headbar" v-bind:style="{ 'background-color': ghRepo.primaryLanguage.color}">
-        <h3 id="name" >{{ ghRepo.name }}</h3>
-      </div>
-      <div class="headbar" v-else style="background-color: black; color: white">
-        <h3 id="name" >{{ ghRepo.name }}</h3>
-      </div>
-      <div class="descrip">
-        <p>{{ ghRepo.description }}</p>
-      </div>
-      <div class="bottom">
-        <div>
-          <img class="avatar" v-bind:src="ghRepo.owner.avatarUrl"/>
+    <div class="hackcard">
+      <a :href="ghRepo.url">
+        <div v-if="ghRepo.primaryLanguage" class="hackcard-head" v-bind:style="{ 'background-color': ghRepo.primaryLanguage.color}">
+          <h3>{{ ghRepo.name }}</h3>
         </div>
-        <div>    
+        <div class="hackcard-head" v-else style="background-color: black; color: white">
+          <h3>{{ ghRepo.name }}</h3>
         </div>
-        <div>
-          <h4>{{ghRepo.owner.login}}</h4>
-          <p>{{ghRepo.owner.bio}}</p>
+      </a>
+
+      <div class="hackcard-repo">
+        <div class="hackcard-repo-description">
+          <p>{{ ghRepo.description }}</p>
+        </div>
+        <div class="hackcard-repo-stats">
           <ul>
-            <li>⭐️- {{ ghRepo.stargazers.totalCount }}</li>
-            <li>🌵- {{ ghRepo.forks.totalCount }}</li>
-            <li>❗️ -{{ ghRepo.issues.totalCount }}</li>
+            <li>
+              <a :href="ghRepo.url + '/stargazers'">
+                ⭐️ {{ ghRepo.stargazers.totalCount }}
+              </a>
+            </li>
+            <li>
+              <a :href="ghRepo.url + '/network'">
+                🌵 {{ ghRepo.forks.totalCount }}
+              </a>
+            </li>
+            <li>
+              <a :href="ghRepo.url + '/issues'">
+                ❗️ {{ ghRepo.issues.totalCount }}
+              </a>
+            </li>
           </ul>
+        </div>
+      </div>
+
+      <div v-if="ghRepo.owner" class="hackcard-owner-wrapper">
+        <div class="hackcard-owner">
+          <div class="hackcard-owner-avatar">
+            <img class="avatar" v-bind:src="ghRepo.owner.avatarUrl"/>
+          </div>
+          <div class="hackcard-owner-bio">
+            <h1>{{ghRepo.owner.login}}</h1>
+            <p>{{ghRepo.owner.bio}}</p>
+          </div>
         </div>
       </div>
   </div>
@@ -39,52 +59,98 @@ export default {
 </script>
 
 <style>
-#wrapper{
-  border-left-style: solid;
-  border-left-width: 5px;
-  border-left-color: black;
+div {
+  box-sizing: border-box;
 }
-#wrapper div{
-  display: flex;
-  flex-direction: vertical;
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
-.bottom ul{
-  padding: 0;
-  font-size: 0.7rem;
-}
-ul li{
-  list-style-type: none;
-  display: inline;
-}
-.headbar {
+
+.hackcard-head {
   color: #202020;
   border-radius: 5px 5px 0 0;
-  padding: 3px 10px 3px 10px;
+  padding: 0;
+  margin: 0;
 }
-#name{
-  -webkit-margin-before: 5px;
-  -webkit-margin-after: 5px;
+
+.hackcard-head > h3 {
+  padding: 1em 0;
+  margin: 0;
 }
-p{
-  font-size: 0.9em;
-}
-.descrip{
-  padding: 3px 10px 3px 10px;
+
+.hackcard-repo {
   border-width: 1px 1px 0px 1px;
   border-color:#BBBBBB;
   border-style:solid;
+  padding: 1em 0;
 }
-.bottom{
-  padding: 5px;
+
+.hackcard-repo-description {
+}
+
+.hackcard-repo-description > p {
+  padding: 0;
+  margin: 0;
+}
+
+.hackcard-owner-wrapper {
   border: 1px solid #BBBBBB;
   border-radius: 0 0 5px 5px;
+  padding: 1em 0;
+}
+
+.hackcard-owner {
+  width: 100%;
+  height: 5em;
   display: flex;
   flex-direction: row;
 }
-.avatar{
-  display: block;
-  padding: 5px;
-  float: left;
-  height: 6rem;
+
+.hackcard-owner-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 20%;
 }
+
+.hackcard-owner-avatar > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+.hackcard-owner-bio {
+  flex: 1 80%;
+  text-align: left;
+  padding: 0;
+  margin: ;
+}
+
+.hackcard-owner-bio h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+
+.hackcard-repo-stats ul {
+  padding: 0;
+  margin: .5em 0 0 0;
+  font-size: 1em;
+}
+
+.hackcard-repo-stats ul li {
+  padding: 0;
+  margin: 0 1em;
+  list-style-type: none;
+  display: inline;
+}
+
+.hackcard-owner-bio  p {
+  padding: 0;
+  margin: 0;
+  font-size: 0.9em;
+}
+
 </style>

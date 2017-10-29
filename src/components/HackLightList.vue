@@ -3,8 +3,7 @@
       <div v-if="items.length !== 0" class="hacklight-wrapper-inner">
         <carousel :perPage=1 :navigationEnabled=false :autoplay=true :loop=true :autoplayTimeout=6000>
           <slide v-for="item in items" :key="item.name">
-            <hacklightcard class="hackcard" :ghRepo="item">
-            </hacklightcard>
+            <hacklightcard :ghRepo="item"></hacklightcard>
           </slide>
         </carousel>
       </div>
@@ -35,8 +34,8 @@ export default {
 </script>
 
 <style>
-.hackcard {
-    width: 80%;
+.hacklight-wrapper-inner > div {
+    max-width: 700px;
     margin: auto;
 }
 
