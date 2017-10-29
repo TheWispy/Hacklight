@@ -1,7 +1,7 @@
 <template>
     <div class="hacklight-wrapper-outer">
       <div class="hacklight-wrapper-inner">
-        <carousel :perPage=1 :navigationEnabled=true>
+        <carousel :perPage=1 :navigationEnabled=false :autoplay=true :loop=true>
           <slide v-for="item in items" :key="item.name">
             <hacklightcard class="hackcard" :ghRepo="item">
             </hacklightcard>
@@ -11,6 +11,7 @@
     </div>
 </template>
 <script>
+
 import HackLightCard from './HackLightCard.vue'
 import { Carousel, Slide } from 'vue-carousel';
 
@@ -36,7 +37,7 @@ export default {
 <style>
 .hackcard {
     width: 80%;
-    margin: 0 5% 10px 5%;
+    margin: auto;
 }
 
 .hacklight-wrapper-outer {
