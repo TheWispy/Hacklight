@@ -6,9 +6,9 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 if (!GITHUB_TOKEN) throw new Error("Supply GitHub token");
 
 /* GET listing. */
-router.get('/', function(req, res, next) {  
+router.get('/repos-with-topic/:topic', function(req, res, next) {  
   const query = `{
-    search(query: "topic:hacksheffield", type: REPOSITORY, first: 10) {
+    search(query: "topic:${req.params.topic}", type: REPOSITORY, first: 10) {
       repositoryCount
       edges {
         node {
