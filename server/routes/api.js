@@ -25,6 +25,11 @@ router.get('/repos-with-topic/:topic', function(req, res, next) {
               	avatarUrl
               	bio
               }
+              ... on Organization{
+                login
+              	avatarUrl
+                bio : description
+              }
             }
             description
             stargazers{
