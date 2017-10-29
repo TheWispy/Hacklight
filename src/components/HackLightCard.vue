@@ -1,7 +1,7 @@
 <template>
     <div class="hackcard">
       <a :href="ghRepo.url">
-        <div v-if="ghRepo.primaryLanguage" class="hackcard-head" v-bind:style="{ 'background-color': ghRepo.primaryLanguage.color}">
+        <div v-if="ghRepo.primaryLanguage" class="hackcard-head" v-bind:style="{ 'background-color': ghRepo.primaryLanguage.color, color: titleForegroundColor }">
           <h3>{{ ghRepo.name }}</h3>
         </div>
         <div class="hackcard-head" v-else style="background-color: black; color: white">
@@ -25,7 +25,7 @@
                 🌵 {{ ghRepo.forks.totalCount }}
               </a>
             </li>
-            <li>
+            <li
               <a :href="ghRepo.url + '/issues'">
                 ❗️ {{ ghRepo.issues.totalCount }}
               </a>
@@ -51,7 +51,25 @@
 <script>
 export default {
   name: 'hacklightlist',
-  props: ['ghRepo']
+  props: ['ghRepo'],
+  computed: {
+    titleForegroundColor: function () {
+      return this.calcTitleForegroundColor(this.ghRepo.primaryLanguage.color);
+    }
+  },
+  methods: {
+    calcTitleForegroundColor(backgroundColor) {
+      let br = backgroundColor.substr(1, 2), bg = backgroundColor.substr(3, 2), bb = backgroundColor.substr(5, 2);
+
+      console.log(backgroundColor, br, parseInt(br, 16));
+
+      if (parseInt(br, 16) < 180 && parseInt(bg, 16) < 180 && parseInt(bb, 16) < 180) {
+        return '#ffffff';
+      } else {
+        return '#000000';
+      }
+    }
+  }
 }
 </script>
 
@@ -113,8 +131,8 @@ a {
 }
 
 .hackcard-owner-avatar > img {
-  max-width: 100%;
-  max-height: 100%;
+  height: 5em;
+  width: auto;
 }
 
 
