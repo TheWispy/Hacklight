@@ -11,7 +11,7 @@
       </div>
       <div class="bottom">
         <div>
-          <img class="avatar" v-bind:src="ghRepo.owner.avatarURL"/>
+          <img class="avatar" v-bind:src="ghRepo.owner.avatarUrl"/>
         </div>
         <div>    
         </div>
