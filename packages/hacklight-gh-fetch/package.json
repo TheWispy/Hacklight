@@ -1,0 +1,33 @@
+{
+  "name": "hacklight-gh-fetch",
+  "version": "1.0.0",
+  "description": "Fetch data from GitHub for use in the HackLight Vue Component",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TheWispy/Hacklight.git"
+  },
+  "keywords": [
+    "github",
+    "spotlight",
+    "projects",
+    "fetch"
+  ],
+  "author": "TheWispy <will0humph@gmail.com>",
+  "contributors": [
+    "Christopher McIntyre <me@cgmcintyre.com>",
+    "Daniel Carl Jones <danny@danielcarl.info>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheWispy/Hacklight/issues"
+  },
+  "homepage": "https://github.com/TheWispy/Hacklight#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "lodash": "^4.17.4"
+  }
+}
