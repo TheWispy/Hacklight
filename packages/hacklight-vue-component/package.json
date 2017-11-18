@@ -1,0 +1,31 @@
+{
+  "name": "hacklight-vue-component",
+  "version": "1.0.0",
+  "description": "Vue component for spotlighting projects",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TheWispy/Hacklight.git"
+  },
+  "keywords": [
+    "Vue",
+    "component",
+    "github",
+    "spotlight",
+    "projects"
+  ],
+  "author": "TheWispy <will0humph@gmail.com>",
+  "contributors": [
+    "Christopher McIntyre <me@cgmcintyre.com>",
+    "Daniel Carl Jones <danny@danielcarl.info>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheWispy/Hacklight/issues"
+  },
+  "homepage": "https://github.com/TheWispy/Hacklight#readme"
+}
